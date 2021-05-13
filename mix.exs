@@ -26,7 +26,7 @@ defmodule UeberauthMailchimp.Mixfile do
 
   defp deps do
     [
-      {:oauth2, "~> 1.0"},
+      {:oauth2, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
       {:jason, "~> 1.0"},
 

@@ -1,20 +1,20 @@
-defmodule Ueberauth.Strategy.Slack.OAuth do
+defmodule Ueberauth.Strategy.Mailchimp.OAuth do
   @moduledoc false
   use OAuth2.Strategy
 
   @defaults [
     strategy: __MODULE__,
-    site: "https://slack.com/api",
-    authorize_url: "https://slack.com/oauth/authorize",
-    token_url: "https://slack.com/api/oauth.access"
+    site: "https://us13.api.mailchimp.com/3.0",
+    authorize_url: "https://login.mailchimp.com/oauth2/authorize",
+    token_url: "https://login.mailchimp.com/oauth2/token"
   ]
 
   def client(opts \\ []) do
-    slack_config = Application.get_env(:ueberauth, Ueberauth.Strategy.Slack.OAuth)
+    mailchimp_config = Application.get_env(:ueberauth, Ueberauth.Strategy.Mailchimp.OAuth)
 
     client_opts =
       @defaults
-      |> Keyword.merge(slack_config)
+      |> Keyword.merge(mailchimp_config)
       |> Keyword.merge(opts)
 
     json_library = Ueberauth.json_library()
@@ -43,6 +43,7 @@ defmodule Ueberauth.Strategy.Slack.OAuth do
     headers = Map.get(options, :headers, [])
     options = Map.get(options, :options, [])
     client_options = Keyword.get(options, :client_options, [])
+
 
     client = OAuth2.Client.get_token!(client(client_options), params, headers, options)
 

@@ -1,16 +1,16 @@
-# Überauth Slack
+# Überauth Mailchimp
 
-> Slack OAuth2 strategy for Überauth.
+> Mailchimp OAuth2 strategy for Überauth.
 
 ## Installation
 
-1. Setup your application at [Slack API](https://api.slack.com).
+1. Setup your application at [Mailchimp API](https://api.mailchimp.com).
 
-1. Add `:ueberauth_slack` to your list of dependencies in `mix.exs`:
+1. Add `:ueberauth_mailchimp` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
-      [{:ueberauth_slack, "~> 0.6"}]
+      [{:ueberauth_mailchimp, "~> 0.6"}]
     end
     ```
 
@@ -18,34 +18,26 @@
 
     ```elixir
     def application do
-      [applications: [:ueberauth_slack]]
+      [applications: [:ueberauth_mailchimp]]
     end
     ```
 
-1. Add Slack to your Überauth configuration:
+1. Add Mailchimp to your Überauth configuration:
 
     ```elixir
     config :ueberauth, Ueberauth,
       providers: [
-        slack: {Ueberauth.Strategy.Slack, []}
+        mailchimp: {Ueberauth.Strategy.Mailchimp, []}
       ]
     ```
 
-    You can optionally restrict authentication by providing your team ID. [Find your Slack team ID here](https://api.slack.com/methods/auth.test/test). Note that this is NOT your team's Slack domain name!
-
-    ```elixir
-    config :ueberauth, Ueberauth,
-      providers: [
-        slack: {Ueberauth.Strategy.Slack, [team: "0ABCDEF"]}
-      ]
-    ```
 
 1.  Update your provider configuration:
 
     ```elixir
-    config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
-      client_id: System.get_env("SLACK_CLIENT_ID"),
-      client_secret: System.get_env("SLACK_CLIENT_SECRET")
+    config :ueberauth, Ueberauth.Strategy.Mailchimp.OAuth,
+      client_id: System.get_env("MAILCHIMP_CLIENT_ID"),
+      client_secret: System.get_env("MAILCHIMP_CLIENT_SECRET")
     ```
 
 1.  Include the Überauth plug in your controller:
@@ -77,22 +69,22 @@ For an example implementation see the [Überauth Example](https://github.com/ueb
 
 Depending on the configured url you can initiate the request through:
 
-    /auth/slack
+    /auth/mailchimp
 
 Or with options:
 
-    /auth/slack?scope=users:read
+    /auth/mailchimp?scope=users:read
 
 By default the requested scope is "users:read". Scope can be configured either explicitly as a `scope` query value on the request path or in your configuration:
 
 ```elixir
 config :ueberauth, Ueberauth,
   providers: [
-    slack: {Ueberauth.Strategy.Slack, [default_scope: "users:read,users:write"]}
+    mailchimp: {Ueberauth.Strategy.Mailchimp, [default_scope: "users:read,users:write"]}
   ]
 ```
 
 ## License
 
-Please see [LICENSE](https://github.com/ueberauth/ueberauth_slack/blob/master/LICENSE) for licensing details.
+Please see [LICENSE](https://github.com/ueberauth/ueberauth_mailchimp/blob/master/LICENSE) for licensing details.
 

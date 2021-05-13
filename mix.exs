@@ -1,19 +1,19 @@
-defmodule UeberauthSlack.Mixfile do
+defmodule UeberauthMailchimp.Mixfile do
   use Mix.Project
 
-  @version "0.6.0"
+  @version "0.1.0"
 
   def project do
     [
-      app: :ueberauth_slack,
+      app: :ueberauth_mailchimp,
       version: @version,
-      name: "Ueberauth Slack",
+      name: "Ueberauth Mailchimp",
       package: package(),
-      elixir: "~> 1.4",
+      elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      source_url: "https://github.com/hassox/ueberauth_slack",
-      homepage_url: "https://github.com/hassox/ueberauth_slack",
+      source_url: "https://github.com/Tiltify/ueberauth_mailchimp",
+      homepage_url: "https://github.com/Tiltify/ueberauth_mailchimp",
       description: description(),
       deps: deps(),
       docs: docs()
@@ -42,15 +42,15 @@ defmodule UeberauthSlack.Mixfile do
   end
 
   defp description do
-    "An Ueberauth strategy for using Slack to authenticate your users"
+    "An Ueberauth strategy for using Mailchimp to authenticate your users"
   end
 
   defp package do
     [
       files: ["lib", "mix.exs", "README.md"],
-      maintainers: ["Daniel Neighman"],
+      maintainers: ["Tiltify"],
       licenses: ["MIT"],
-      links: %{GitHub: "https://github.com/hassox/ueberauth_slack"}
+      links: %{GitHub: "https://github.com/Tiltify/ueberauth_mailchimp"}
     ]
   end
 end

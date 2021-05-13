@@ -1,6 +1,6 @@
-defmodule UeberauthSlackTest do
+defmodule UeberauthMailchimpTest do
   use ExUnit.Case
-  doctest UeberauthSlack
+  doctest UeberauthMailchimp
 
   test "the truth" do
     assert 1 + 1 == 2

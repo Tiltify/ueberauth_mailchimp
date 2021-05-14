@@ -46,6 +46,7 @@ defmodule Ueberauth.Strategy.Mailchimp.OAuth do
 
 
     client = OAuth2.Client.get_token!(client(client_options), params, headers, options)
+    IO.inspect client
 
     client.token
   end

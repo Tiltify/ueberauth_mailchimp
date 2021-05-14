@@ -76,7 +76,6 @@ defmodule Ueberauth.Strategy.Mailchimp do
   @doc false
   def credentials(conn) do
     token = conn.private.mailchimp_token
-    auth = conn.private[:mailchimp_auth]
 
     %Credentials{
       token: token.access_token,

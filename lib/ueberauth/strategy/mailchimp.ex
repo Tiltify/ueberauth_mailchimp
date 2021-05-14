@@ -19,7 +19,7 @@ defmodule Ueberauth.Strategy.Mailchimp do
   # When handling the request just redirect to Mailchimp
   @doc false
   def handle_request!(conn) do
-    opts = Keyword.put(opts, :redirect_uri, callback_url(conn))
+    opts = Keyword.put([], :redirect_uri, callback_url(conn))
     module = option(conn, :oauth2_module)
 
     redirect!(conn, apply(module, :authorize_url!, [opts]))

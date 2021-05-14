@@ -19,23 +19,7 @@ defmodule Ueberauth.Strategy.Mailchimp do
   # When handling the request just redirect to Mailchimp
   @doc false
   def handle_request!(conn) do
-    scopes = conn.params["scope"] || option(conn, :default_scope)
-    opts = [scope: scopes]
-
-    opts =
-      if conn.params["state"], do: Keyword.put(opts, :state, conn.params["state"]), else: opts
-
-    team = option(conn, :team)
-    opts = if team, do: Keyword.put(opts, :team, team), else: opts
-
-    callback_url = callback_url(conn)
-
-    callback_url =
-      if String.ends_with?(callback_url, "?"),
-        do: String.slice(callback_url, 0..-2),
-        else: callback_url
-
-    opts = Keyword.put(opts, :redirect_uri, callback_url)
+    opts = Keyword.put(opts, :redirect_uri, callback_url(conn))
     module = option(conn, :oauth2_module)
 
     redirect!(conn, apply(module, :authorize_url!, [opts]))
@@ -93,8 +77,6 @@ defmodule Ueberauth.Strategy.Mailchimp do
   def credentials(conn) do
     token = conn.private.mailchimp_token
     auth = conn.private[:mailchimp_auth]
-    scope_string = token.other_params["scope"] || ""
-    scopes = String.split(scope_string, ",")
 
     %Credentials{
       token: token.access_token,
@@ -102,7 +84,7 @@ defmodule Ueberauth.Strategy.Mailchimp do
       expires_at: token.expires_at,
       token_type: token.token_type,
       expires: !!token.expires_at,
-      scopes: scopes,
+      scopes: [],
       other: %{}
     }
   end

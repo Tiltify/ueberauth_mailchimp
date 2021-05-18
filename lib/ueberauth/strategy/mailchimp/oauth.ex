@@ -60,7 +60,9 @@ defmodule Ueberauth.Strategy.Mailchimp.OAuth do
   def get_token(client, params, headers) do
     client
     |> put_param("client_secret", client.client_secret)
-    |> put_header("Accept", "application/json")
+    |> put_header("accept", "application/json")
+    |> put_header("accept-encoding", "identity")
+    |> put_header("content-type", "application/x-www-form-urlencoded")
     |> OAuth2.Strategy.AuthCode.get_token(params, headers)
   end
 

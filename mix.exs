@@ -27,7 +27,7 @@ defmodule UeberauthMailchimp.Mixfile do
   defp deps do
     [
       {:oauth2, "~> 2.0"},
-      {:ueberauth, "~> 0.6"},
+      {:ueberauth, "~> 0.10.3"},
       {:jason, "~> 1.0"},
 
       # dev/test dependencies
